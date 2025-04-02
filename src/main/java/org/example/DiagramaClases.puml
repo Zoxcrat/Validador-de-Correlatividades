@@ -1,0 +1,36 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+' Definición de la clase Alumno
+class Alumno {
+  - nombre : String
+  - materiasAprobadas : List<Materia>
+  + Alumno(nombre: String)
+  + agregarMateriasAprobadas(Materia... materias)
+  + tieneAprobada(materia: Materia) : boolean
+}
+
+' Definición de la clase Materia
+class Materia {
+  - nombre : String
+  - correlativas : List<Materia>
+  + Materia(nombre: String)
+  + agregarCorrelativas(correlativa: Materia) : void
+
+}
+
+' Definición de la clase Inscripcion
+class Inscripcion {
+  - alumno : Alumno
+  - materiasInscripcion : List<Materia>
+  + Inscripcion(alumno: Alumno)
+  + agregarMateriasInscripcion(Materia... materias) : void
+  + aprobada() : boolean
+}
+
+' Relaciones entre clases
+Alumno  o-- "*" Materia
+Inscripcion --> Alumno
+Materia  o-- "*" Materia
+Inscripcion o-- "*" Materia
+@enduml
